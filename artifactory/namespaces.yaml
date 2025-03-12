@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: elastic
+  name: artifactory
   labels:
     purpose: demo
     environment: development

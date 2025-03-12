@@ -93,3 +93,4 @@ kubectl exec -it vault-0 -n vault -- vault operator unseal <UNSEAL_KEY_5>
 ```
 
 Once the key threshold is reached, Vault will be unsealed and ready for use.
+
