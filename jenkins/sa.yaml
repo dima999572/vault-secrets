@@ -1,0 +1,10 @@
+kubectl apply -f - << EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: jenkins-secret
+  namespace: jenkins
+  annotations:
+    kubernetes.io/service-account.name: jenkins
+type: kubernetes.io/service-account-token
+EOF
