@@ -1,0 +1,45 @@
+global:
+  namespace: vault
+server:
+  enabled: true
+  ha:
+    enabled: false
+  standalone:
+    enabled: true
+    config: |-
+      listener "tcp" {
+        tls_disable = 1
+        address = "[::]:8200"
+        cluster_address = "[::]:8201"
+      }
+      storage "file" {
+        path = "/vault/data"
+      }
+      ui = true
+      plugin_directory = "/vault/plugins"
+  dev:
+    enabled: false
+  image:
+    tag: 1.12.11
+  logLevel: "debug"
+  volumes:
+    - name: vault-plugins
+      persistentVolumeClaim:
+        claimName: vault-plugins
+  volumeMounts:
+    - name: vault-plugins
+      mountPath: /vault/plugins
+  ui:
+    enabled: true
+  statefulSet:
+    securityContext:
+      pod:
+        runAsUser: 0 # 100
+        runAsGroup: 0 # 1000
+        runAsNonRoot: false # true
+        fsGroup: 0 # 1000
+injector:
+  enabled: true
+  logLevel: "debug"
+  agentImage:
+    tag: 1.12.11

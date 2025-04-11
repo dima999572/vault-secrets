@@ -1,0 +1,50 @@
+artifactory:
+  cluster:
+    enabled: false
+
+  masterKeySecretName: "artifactory-masterkey-secret"
+  joinKeySecretName: "artifactory-joinkey-secret"
+
+  persistence:
+    enabled: true
+    existingClaim: "artifactory-pvc"
+  artifactory:
+    image:
+      registry: releases-docker.jfrog.io
+      repository: jfrog/artifactory-oss
+    resources:
+     requests:
+       memory: "512Mi"
+       cpu: "250m"
+     limits:
+       memory: "2Gi"
+       cpu: "500m"
+    javaOpts:
+     xms: "512m"
+     xmx: "1g"
+
+  installer:
+    platform: art-oss-helm
+
+  nginx:
+    enabled: false
+    service:
+      type: ClusterIP
+
+  ingress:
+    enabled: false
+    tls:
+
+  postgresql:
+    enabled: true
+    persistence: 
+      enabled: true
+      existingClaim: "artifactory-postgres-pvc"
+    postgresqlUsername: "artifactory"
+    postgresqlPassword: "password"
+
+  jfconnect:
+    enabled: false
+
+  federation:
+    enabled: false
