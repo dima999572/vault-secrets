@@ -10,7 +10,7 @@ spec:
     requests:
       storage: 10Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteOnce  
 
 ---
 apiVersion: v1
@@ -23,4 +23,4 @@ spec:
     requests:
       storage: 20Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteOnce 
